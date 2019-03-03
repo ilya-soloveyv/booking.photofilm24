@@ -41,6 +41,15 @@ app.get('/booking/', (req, res) => {
     res.sendFile(path.join(__dirname, './', 'index.html'))
 })
 
+
+if (process.env.NODE_ENV === 'production') {
+    const options = {
+        key: fs.readFileSync('encryption/privkey1.pem'),
+        cert: fs.readFileSync('encryption/cert1.pem')
+    }
+    const https = require('https').createServer(options, app)
+    https.listen(443)
+}
 app.listen(process.env.PORT, () => {
     console.log('Server "' + process.env.NODE_ENV + '" is started')
 })

@@ -3,7 +3,9 @@ node_modules/
 dist/
 npm-debug.log
 yarn-error.log
-.env
+/.env
+/encryption
+/package-lock.json
 
 # Editor directories and files
 .idea

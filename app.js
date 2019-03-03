@@ -5,7 +5,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 const path = require('path')
 
-app.use(express.static('dist'))
+app.use('/dist', express.static('dist'))
 
 if (process.env.NODE_ENV === 'development') {
     console.log('Started development proxy')
@@ -15,6 +15,11 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.get('/', (req, res) => {
+    res.redirect('/booking/')
+})
+
+app.get('/booking/', (req, res) => {
+    // res.json(true)
     res.sendFile(path.join(__dirname, './', 'index.html'))
 })
 
